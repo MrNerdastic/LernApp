@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lerntypanalyse</title>
+</head>
+<body>
+    <h1>Lerntypanalyse</h1>
+    {% if result %}
+        <p>Das war {{ result }}!</p>
+        {% if answer %}
+        <p>Die richtige Antwort ist {{ answer }}</p>
+        {% endif %}
+    {% else %}
+        <form action="/example" method="post">
+            <label>{{ frage }}</label><br>
+            <button type="submit" name="button_value" value="button1">{{ option_1 }}</button>
+            <button type="submit" name="button_value" value="button2">{{ option_2 }}</button>
+            <button type="submit" name="button_value" value="button3">{{ option_3 }}</button>
+            <button type="submit" name="button_value" value="button4">{{ option_4 }}</button>
+        </form>
+    {% endif %}
+    <p><a href="/home">Zurück zur homepage</a></p>
+</body>
+</html>

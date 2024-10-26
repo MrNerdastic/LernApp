@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hallo Seite</title>
+</head>
+<body>
+    <h1>Hallo Seite</h1>
+    {% if name and mood %}
+        <p>Hallo, {{ name }}!</p>
+        <p>Warum fühlst du dich {{ mood }}?</p>
+    {% else %}
+        <form action="/hello" method="post">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="mood">Wie geht es dir?:</label>
+            <input type="text" id="mood" name="mood" required>
+
+            <button type="submit">Absenden</button>
+        </form>
+    {% endif %}
+    <p><a href="/home">Zurück zur homepage</a></p>
+</body>
+</html>

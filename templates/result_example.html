@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ergebnis</title>
+</head>
+<body>
+    <h1>Ergebnis</h1>
+    {% if score %}
+        <p>Punkte: {{ score }}</p>
+    {% else %}
+        <p>Bitte beenden Sie das Quiz</p>
+    {% endif %}
+    <p><a href="/home">Zurück zur Homepage</a></p>
+</body>
+</html>

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ergebnis</title>
+</head>
+<body>
+    <h1>Ergebnis</h1>
+    {% if scores.bild %}
+        <p>Bildliches Lernen: {{ scores.bild }}</p>
+        <p>Auditives Lernen: {{ scores.auditiv }}</p>
+        <p>Motorisches ("hands-on") Lernen: {{ scores.motorisch }}</p>
+        <p>Lernen durch Lesen: {{ scores.lesen }}</p>
+    {% else %}
+        <p>Bitte beenden Sie das Quiz</p>
+    {% endif %}
+    <p><a href="/home">Zurück zur Homepage</a></p>
+</body>
+</html>
