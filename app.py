@@ -31,11 +31,11 @@ def submit():
         session['motorisch'] = 0"""
 
 
-    current_question = request.args.get('current_question')#session['current_question']
-    bild = request.args.get('bild')
-    auditiv = request.args.get('auditiv')
-    lesen = request.args.get('lesen')
-    motorisch = request.args.get('motorisch')
+    current_question = int(request.args.get('current_question')) # session['current_question']
+    bild = int(request.args.get('bild'))
+    auditiv = int(request.args.get('auditiv'))
+    lesen = int(request.args.get('lesen'))
+    motorisch = int(request.args.get('motorisch'))
 
     # Load the current question file
     file_path = f'{question_path}/{current_question}.frage'
@@ -89,7 +89,7 @@ def submit():
                     'motorisch': motorisch
                 }
                 # Clear session data for a fresh start
-                session.clear()
+                #session.clear()
                 return {'scores': final_scores} # render_template("result.html", scores=final_scores)
 
         # Render the question template for GET requests
