@@ -1,8 +1,10 @@
 from flask import Flask, render_template, request, redirect, url_for, session
+from flask_cors import CORS, cross_origin
 import os
 from datetime import datetime
 
 app = Flask(__name__)
+cors = CORS(app)
 app.secret_key = 'your_secret_key'  # Required for session management
 
 # Directory path for question files
@@ -11,6 +13,7 @@ app.secret_key = 'your_secret_key'  # Required for session management
 
 
 @app.route("/lerntypanalyse", methods=["GET", "POST"])
+@cross_origin()
 def submit():
     question_path = 'lerntyp'
     items = os.listdir(question_path)
