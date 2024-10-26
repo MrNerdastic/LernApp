@@ -16,7 +16,7 @@ def submit():
     items = os.listdir(question_path)
     number_of_questions = len(items)
     # Initialize `current_question` and category scores if they don’t already exist in the session
-    if 'current_question' not in session:
+    """if 'current_question' not in session:
         session['current_question'] = 0
     if 'bild' not in session:
         session['bild'] = 0
@@ -25,9 +25,14 @@ def submit():
     if 'lesen' not in session:
         session['lesen'] = 0
     if 'motorisch' not in session:
-        session['motorisch'] = 0
+        session['motorisch'] = 0"""
 
-    current_question = session['current_question']
+
+    current_question = request.args.get('current_question')#session['current_question']
+    bild = request.args.get('bild')
+    auditiv = request.args.get('auditiv')
+    lesen = request.args.get('lesen')
+    motorisch = request.args.get('motorisch')
 
     # Load the current question file
     file_path = f'{question_path}/{current_question}.frage'
@@ -59,13 +64,13 @@ def submit():
             # Update the score in the appropriate category
             if index is not None:
                 if content[index] == '1':
-                    session['bild'] += 1
+                    bild += 1
                 elif content[index] == '2':
-                    session['auditiv'] += 1
+                    auditiv += 1
                 elif content[index] == '3':
-                    session['lesen'] += 1
+                    lesen += 1
                 elif content[index] == '4':
-                    session['motorisch'] += 1
+                    motorisch += 1
                 else:
                     pass
 
@@ -76,21 +81,24 @@ def submit():
             else:
                 # Final scores for display
                 final_scores = {
-                    'bild': session['bild'],
-                    'auditiv': session['auditiv'],
-                    'lesen': session['lesen'],
-                    'motorisch': session['motorisch']
+                    'bild': bild,
+                    'auditiv': auditiv,
+                    'lesen': lesen,
+                    'motorisch': motorisch
                 }
                 # Clear session data for a fresh start
                 session.clear()
-                return render_template("result.html", scores=final_scores)
+                return {'scores': final_scores} # render_template("result.html", scores=final_scores)
 
         # Render the question template for GET requests
-        return render_template("lerntypanalyse.html", frage=frage, option_1=option_1, option_2=option_2, 
-                               option_3=option_3, option_4=option_4)
+        return {'frage': frage, 'option_1': option_1, 'option_2': option_2, 'option_3': option_3, 'option_4': option_4, 'bild': bild,
+                    'auditiv': auditiv,
+                    'lesen': lesen,
+                    'motorisch': motorisch} # render_template("lerntypanalyse.html", frage=frage, option_1=option_1, option_2=option_2, 
+                               # option_3=option_3, option_4=option_4)
 
     # If no questions are available
-    return render_template("index.html", message="No more questions available.")
+    # return render_template("index.html")
 
 @app.route("/example", methods=["GET", "POST"])
 def example():
