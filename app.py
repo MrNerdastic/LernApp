@@ -48,7 +48,7 @@ def submit():
 
         if request.method == "POST":
             # Retrieve user's selected button
-            button_value = request.form.get('button_value')
+            button_value = request.args.get('button_value')
             index = None
 
             # Determine which option was selected and update the respective category score
