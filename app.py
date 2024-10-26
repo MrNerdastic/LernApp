@@ -79,7 +79,7 @@ def submit():
 
             # Move to the next question or end the quiz
             if current_question < number_of_questions - 1:
-                return redirect(url_for('submit'))
+                pass
             else:
                 # Final scores for display
                 final_scores = {
