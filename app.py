@@ -94,7 +94,7 @@ def submit():
         return {'frage': frage, 'option_1': option_1, 'option_2': option_2, 'option_3': option_3, 'option_4': option_4, 'bild': bild,
                     'auditiv': auditiv,
                     'lesen': lesen,
-                    'motorisch': motorisch} # render_template("lerntypanalyse.html", frage=frage, option_1=option_1, option_2=option_2, 
+                    'motorisch': motorisch, 'current_question': current_question} # render_template("lerntypanalyse.html", frage=frage, option_1=option_1, option_2=option_2, 
                                # option_3=option_3, option_4=option_4)
 
     # If no questions are available
