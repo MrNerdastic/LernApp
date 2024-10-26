@@ -79,7 +79,6 @@ def submit():
 
             # Move to the next question or end the quiz
             if current_question < number_of_questions - 1:
-                session['current_question'] += 1
                 return redirect(url_for('submit'))
             else:
                 # Final scores for display
