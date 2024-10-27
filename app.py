@@ -175,36 +175,26 @@ def start():
     current_datetime = datetime.now()
     today = current_datetime.date()
 
-    if 'confirmation' not in session:
-        session['confirmation'] = 0
-    if 'name' not in session:
-        session['name'] = 0
-    if 'can_go_home' not in session:
-        session['can_go_home'] = 0
-    if 'day_until_exam' not in session:
-        session['day_until_exam'] = 0
-
-    confirmation = session['confirmation']
-    name = session['name']
-    can_go_home = session['can_go_home']
-    day_until_exam = session['day_until_exam']
-
     if request.method == "POST":
-        name = request.form.get('name')
-        notenziel = request.form.get('notenziel')
-        day = request.form.get('day')
-        month = request.form.get('month')
-        year = request.form.get('year')
+        name = request.args.get('name')
+        notenziel = request.args.get('notenziel')
+        day = int(request.args.get('day'))
+        month = int(request.args.get('month'))
+        year = int(request.args.get('year'))
         date = datetime(int(year), int(month), int(day))
         date = date.date()
         difference = date - today
         day_until_exam = difference.days
+        with open("basic_info.txt", "w") as file:
+            file.writeline(str(day_until_exam))
+            file.close()
         if notenziel:
-            confirmation = "gespeichert"
             can_go_home = True
-        else:
-            confirmation = "nicht gespeichert"
-        return {'test': confirmation}#render_template("start.html", confirmation=confirmation, name=name, can_go_home=can_go_home, day_until_exam=day_until_exam)
+        return {
+                    'day_until_exam': day_until_exam,
+                    'name': name,
+                    'can_go_home': can_go_home
+                }#render_template("start.html", confirmation=confirmation, name=name, can_go_home=can_go_home, day_until_exam=day_until_exam)
 
     return render_template("start.html")
 
